@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("maven-publish")
 }
 
 android {
@@ -31,8 +32,18 @@ android {
         jvmTarget = "1.8"
     }
 }
+publishing {
+    publications {
+        create<MavenPublication>("release") {
+            groupId = "com.github.DenisHDG"
+            artifactId = "toastelibrary"
+            version = "1.0.0"
+        }
+    }
+}
 
 dependencies {
+    implementation(libs.toaste.library)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
